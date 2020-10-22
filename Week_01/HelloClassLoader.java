@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -7,7 +5,7 @@ import java.lang.reflect.Method;
 
 public class HelloClassLoader extends ClassLoader {
 
-    public Class findClass(String name) throws ClassNotFoundException {
+    public Class findClass(String name) {
         byte[] b = new byte[0];
         try {
             b = loadClassData();
@@ -23,7 +21,7 @@ public class HelloClassLoader extends ClassLoader {
         byte[] helloXlassByteArray = new byte[helloXlassInputStream.available()];
         helloXlassInputStream.read(helloXlassByteArray);
         byte[] helloClassByteArray = new byte[helloXlassByteArray.length];
-        for(int i=0;i<helloXlassByteArray.length ;i++){
+        for(int i=0; i<helloXlassByteArray.length; i++){
             helloClassByteArray[i] = (byte) (255-helloXlassByteArray[i]);
         }
         return helloClassByteArray;
@@ -31,8 +29,8 @@ public class HelloClassLoader extends ClassLoader {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         ClassLoader loader = new HelloClassLoader();
-        Object helloClassInstance = loader.loadClass("Hello").newInstance();
-        Method helloMethod = helloClassInstance.getClass().getMethod("hello");
-        helloMethod.invoke(helloClassInstance);
+        Class helloClass = loader.loadClass("Hello");
+        Method helloMethod = helloClass.getMethod("hello");
+        helloMethod.invoke(helloClass.newInstance());
     }
 }
