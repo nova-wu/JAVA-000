@@ -8,8 +8,7 @@ public class HttpClientSample {
 
     public static void main(String[] args) throws Exception {
 
-        String url = "https://www.nteport.com/nsw/info/info-type!getNewsByColms.action?num=6&cols=2c90984756249fc1015624ac1f0d0002";
-        url = "http://localhost:8801/";
+        String url = "http://localhost:8801/";
         HttpResponse response = Request.Get(url).execute().returnResponse();
         int statusCode = response.getStatusLine().getStatusCode();
         if(HttpStatus.SC_OK <= statusCode && HttpStatus.SC_MULTIPLE_CHOICES >= statusCode) {
