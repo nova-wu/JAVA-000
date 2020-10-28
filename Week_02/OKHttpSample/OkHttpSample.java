@@ -12,7 +12,7 @@ public class OkHttpSample {
 
     public void run() throws Exception {
 
-        String url = "https://www.nteport.com/nsw/info/info-type!getNewsByColms.action?num=6&cols=2c90984756249fc1015624ac1f0d0002";
+        String url = "http://localhost:8801/";
 
         Request request = new Request.Builder()
             .url(url)
