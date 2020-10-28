@@ -20,6 +20,7 @@ public class HelloClassLoader extends ClassLoader {
         InputStream helloXlassInputStream = this.getClass().getResourceAsStream("/Hello.xlass");
         byte[] helloXlassByteArray = new byte[helloXlassInputStream.available()];
         helloXlassInputStream.read(helloXlassByteArray);
+        helloXlassInputStream.close();
         byte[] helloClassByteArray = new byte[helloXlassByteArray.length];
         for(int i=0; i<helloXlassByteArray.length; i++){
             helloClassByteArray[i] = (byte) (255-helloXlassByteArray[i]);
