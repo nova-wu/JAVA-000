@@ -16,6 +16,6 @@
 
 ### 3. 读写分离 - 数据库框架版本 2.0
 
--见`dynamic-datasource-shardingSphere`
+- 见`dynamic-datasource-shardingSphere`
 
 
