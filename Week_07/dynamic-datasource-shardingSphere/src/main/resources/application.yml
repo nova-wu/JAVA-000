@@ -1,0 +1,29 @@
+spring:
+  shardingsphere:
+    datasource:
+      names:  master,slave
+      #master1 数据源属性配置细节
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost/test
+        username: rw
+        password: rw_password
+      #slave 属性配置细节
+      slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost/test
+        username: ro
+        password: ro_password
+
+      #主从规则配置
+      master-slave-rules:
+        ms_ds1:
+          masterDataSourceName: master
+          slaveDataSourceNames: slave
+          loadBalanceAlgorithmType: ROUND_ROBIN
+
+    # sharding 属性配置显示sql
+    props:
+      sql.show: true
